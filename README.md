@@ -1,2 +1,2 @@
-# SPACS
-Solar powered air conditioning systems for the MENA region
+# Solar Electric Boat
+Solar powered electric shuttle boat
