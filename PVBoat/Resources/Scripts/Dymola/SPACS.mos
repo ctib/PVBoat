@@ -1,0 +1,58 @@
+simulateModel("SPACS_Matrix.System.ReferenceSystem", stopTime=31536000, numberOfIntervals=8760, method="dassl", resultFile="ReferenceSystem");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 250},
+  y = {"ambient.TAirRef","building.zone.TAir","building.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ReferenceSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {600, 0, 600, 250},
+  y = {"building.zone.conHeatSourcesPorts[1].Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ReferenceSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {0, 250, 600, 250},
+  y = {"battery.PChargeEff","battery.PLoadEff","battery.PGrid"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ReferenceSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 4,
+  position = {600, 250, 600, 250},
+  y = {"battery.E","battery.EBou","battery.EAva"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ReferenceSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

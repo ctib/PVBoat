@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Technologies.Photovoltaics.Examples.PVModuleControlledTiltAngle", stopTime=864000, method="dassl", resultFile="PVModuleControlledTiltAngle");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"pvField.TAmb","pvField.thermalModel.TCel"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleControlledTiltAngle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"pvField.PField"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleControlledTiltAngle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {0, 570, 600, 500},
+  y = {"pvField.angleDegTil_in"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleControlledTiltAngle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

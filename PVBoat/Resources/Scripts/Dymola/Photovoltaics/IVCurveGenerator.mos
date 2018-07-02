@@ -1,0 +1,34 @@
+translateModel("SPACS_Matrix.Photovoltaics.IVCurveGenerator");
+simTime = pvField.pvModuleData.Ul0;
+simulateModel("SPACS_Matrix.Photovoltaics.IVCurveGenerator", stopTime=simTime, method="dassl", resultFile="IVCurveGenerator");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"pvField.IField"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "IVCurveGenerator.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1,
+  bottomTitle = "U in [V]");
+createPlot(
+    id = 2,
+    position = {600, 0, 600, 500},
+    y = {"pvField.PField"},
+    autoscale = true,
+    autoerase = true,
+    autoreplot = true,
+    description = false,
+    grid = true,
+    color = true,
+    online = false,
+    filename = "IVCurveGenerator.mat",
+    leftTitleType = 1,
+    bottomTitleType = 1,
+    bottomTitle = "U in [V]");

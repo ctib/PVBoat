@@ -1,0 +1,4 @@
+ - python bindings (?)
+ - sync() and re-initialize dataSets when changed...?
+ - support groups introduced with netCDF4
+ 

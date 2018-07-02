@@ -1,0 +1,41 @@
+simulateModel("SPACS_Matrix.ElectricalStorages.Test_BatteryLeadAcid", stopTime=500000, method="dassl", resultFile="Test_BatteryLeadAcid");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 200},
+  y = {"battery.PChargeEff","battery.PLoadEff","battery.PGrid","battery.PLoadAva","battery.PLoadBou"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Test_BatteryLeadAcid.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 225, 1000, 600},
+  y = {"battery.E","battery.EBou","battery.EAva"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  y = {"battery.UBattery"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,30 @@
+within SPACS_Matrix.Buildings;
+model SingleFamilyHouse
+  extends BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DBox(
+    calcIdealLoads=false,
+    heatSources = true,
+    nHeatSources = 1,
+    heightWindow1=2.72,
+    heightWindow2=2.61,
+    heightWindow3=2.72,
+    heightWindow4=2.61,
+    widthWindow1=2.72,
+    widthWindow2=2.61,
+    widthWindow3=2.72,
+    widthWindow4=2.61,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofSingle2014 constructionCeiling,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.BasePlateSingle2014 constructionBottom,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateWallSingle2014 constructionWallsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingSingle2014 constructionCeilingsInterior,
+    width=8.91,
+    length=9.64,
+    height=5.10,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow4);
+end SingleFamilyHouse;

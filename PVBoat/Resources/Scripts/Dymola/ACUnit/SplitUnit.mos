@@ -1,0 +1,30 @@
+simulateModel("SPACS_Matrix.ACUnit.Examples.SplitUnit", stopTime=31536000, numberOfIntervals=8760,  method="dassl", resultFile="SplitUnit");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 250},
+  y = {"TSetCooling.y","splitUnit.T_amb"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SplitUnit.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {600, 0, 600, 250},
+  y = {"splitUnit.powerDemand"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SplitUnit.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

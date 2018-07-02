@@ -1,0 +1,4 @@
+OutputCPUtime:=true;
+openModel("./BuildingSystems/BuildingSystems/package.mo");
+openModel("../../BuildingSystems/netCDF-DataReader/NcDataReader2/package.mo");
+openModel("../../../PVBoat/package.mo");
