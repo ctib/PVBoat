@@ -4,6 +4,8 @@ extends Modelica.Icons.ExamplesPackage;
 
   model PhotovoltaicSystem_26trips_onboat "PV system for a solar boat"
     extends Modelica.Icons.Example;
+    Modelica.SIunits.Energy EBoatload(displayUnit = "kWh");
+
     BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
       redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
       angleDegAzi_constant=0.0,
@@ -26,7 +28,7 @@ extends Modelica.Icons.ExamplesPackage;
         BuildingSystems.Technologies.ElectricalStorages.Data.LeadAcid.Chloride200Ah
         batteryData(PCharge_max=336))
       annotation (Placement(transformation(extent={{-30,42},{-10,62}})));
-    Modelica.Blocks.Sources.CombiTimeTable                         SLP_July(
+    Modelica.Blocks.Sources.CombiTimeTable                         BoatLoad(
         extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic, table=[0,0.0001;
           29700,0.0001; 29700,2200; 29970,2200; 29970,0.0001; 30270,0.0001; 30270,
           1500; 30540,1500; 30540,0.0001; 30600,0.0001; 30600,2200; 30870,2200; 30870,
@@ -63,9 +65,7 @@ extends Modelica.Icons.ExamplesPackage;
           0; 62100,0; 62100,2200; 62370,2200; 62370,0.0001; 62670,0.0001; 62670,1500;
           62940,1500; 62940,0.0001; 63000,0.0001; 63000,2200; 63270,2200; 63270,0.0001;
           63330,0.0001; 63330,1500; 63600,1500; 63600,0.0001; 86399,0.0001])
-      annotation (Placement(transformation(extent={{46,42},{34,54}})));
-    Modelica.Blocks.Math.Gain load(k=1)
-      annotation (Placement(transformation(extent={{26,46},{14,58}})));
+      annotation (Placement(transformation(extent={{46,46},{34,58}})));
     Modelica.Blocks.Continuous.Integrator EField(y(displayUnit="kWh"))
       "Generated electricity by the PV field"
       annotation (Placement(transformation(extent={{-36,76},{-28,84}})));
@@ -76,6 +76,9 @@ extends Modelica.Icons.ExamplesPackage;
       "Electricty demand"
       annotation (Placement(transformation(extent={{14,76},{22,84}})));
   equation
+
+    der(EBoatload)=BoatLoad.y[1];
+
     connect(radiation.radiationPort, pvField.radiationPort)
       annotation (Line(points={{-55.2,65.88},{-46,65.88},{-46,52}},color={255,255,0},smooth=Smooth.None));
     connect(pvField.angleDegTil, radiation.angleDegTil) annotation (Line(
@@ -84,14 +87,10 @@ extends Modelica.Icons.ExamplesPackage;
       points={{-52,50},{-68,50},{-68,62.4},{-64.56,62.4}}, color={0,0,127}));
     connect(pvField.PField, battery.PCharge)
       annotation (Line(points={{-40,52},{-25,52}}, color={0,0,127}));
-    connect(battery.PLoad, load.y)
-      annotation (Line(points={{-15,52},{13.4,52}}, color={0,0,127}));
     connect(pvField.PField, EField.u) annotation (Line(points={{-40,52},{-40,52},{
             -40,80},{-36.8,80}}, color={0,0,127}));
     connect(battery.PGrid, EGrid.u) annotation (Line(points={{-14.6,56},{-12,56},{
             -12,80},{-8.8,80}}, color={0,0,127}));
-    connect(load.y, Eload.u) annotation (Line(points={{13.4,52},{10,52},{10,80},{13.2,
-            80}}, color={0,0,127}));
     connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
             points={{-73.4,83.4},{-70,83.4},{-70,82},{-62.28,82},{-62.28,70.56}},
             color={0,0,127}));
@@ -108,8 +107,10 @@ extends Modelica.Icons.ExamplesPackage;
     connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{
             -80.6,71.4},{-80.6,67.2},{-64.56,67.2}}, color={0,0,127}));
 
-    connect(SLP_July.y[1], load.u) annotation (Line(points={{33.4,48},{30,48},{30,
-            52},{27.2,52}}, color={0,0,127}));
+  connect(BoatLoad.y[1], battery.PLoad)
+    annotation (Line(points={{33.4,52},{-15,52}}, color={0,0,127}));
+  connect(Eload.u, BoatLoad.y[1]) annotation (Line(points={{13.2,80},{10,80},{
+          10,52},{33.4,52}}, color={0,0,127}));
     annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{60,100}})),
       experiment(StopTime=31536000, __Dymola_NumberOfIntervals=8670),
       __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/PhotovoltaicSystems/PhotovoltaicSystem.mos" "Simulate and plot"),
